@@ -11,6 +11,7 @@ and write iam credencials.
 exec
 ```
 docker run --rm --env-file ./.env -v "$PWD":/var/task lambci/lambda:python3.8 lambda_function.lambda_handler
+docker run --rm --env-file ./.env -v "$PWD":/var/task lambci/lambda:python3.8 lambda_function.lambda_handler $(printf '%s' $(cat event.json))
 ```
 
 ```
