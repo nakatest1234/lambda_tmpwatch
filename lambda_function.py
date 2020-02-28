@@ -54,7 +54,11 @@ def lambda_handler(event, context):
 				logStreamName=target['logStreamName'],
 			)
 
-	return {
+	result = {
 		'dryrun': dryrun,
 		'delete_targets': delete_targets,
 	}
+
+	print(result)
+
+	return result
