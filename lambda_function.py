@@ -2,14 +2,11 @@ import boto3
 import time
 import os
 from datetime import datetime, timedelta, timezone
-from functools import lru_cache
 
-@lru_cache(maxsize=None)
-def myTZ():
-	return int(os.environ.get('myTZ', 9))
+myTZ = int(os.environ.get('myTZ', 9))
 
 def datetime_jst(timestamp):
-	return datetime.fromtimestamp(timestamp/1000).astimezone(timezone(timedelta(hours=myTZ()))).strftime("%Y/%m/%d %H:%M:%S.%f%z")
+	return datetime.fromtimestamp(timestamp/1000).astimezone(timezone(timedelta(hours=myTZ))).strftime("%Y/%m/%d %H:%M:%S.%f%z")
 
 def day2timestamp(days):
 	return int((time.time() - (days * 24 * 3600))*1000) # ms
